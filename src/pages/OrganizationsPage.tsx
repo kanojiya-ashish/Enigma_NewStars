@@ -1,0 +1,13 @@
+import { useEffect, useState } from 'react'
+import { api } from '../api'
+import type { Organization } from '../types'
+import { Badge, Button, Card, EmptyState, ErrorNotice, Loading, PageHeader, statusTone } from '../components/ui'
+import { Icon } from '../components/icons'
+
+export function OrganizationsPage() {
+  const [rows,setRows]=useState<Organization[]>([]);const [status,setStatus]=useState('');const [loading,setLoading]=useState(true);const [error,setError]=useState('');
+  const load=()=>{setLoading(true);api.manageOrganizations(status||undefined).then(setRows).catch(e=>setError(e instanceof Error?e.message:'Unable to load partner registry')).finally(()=>setLoading(false))};useEffect(() => { void load() }, [status])
+  const verify=async(id:number,next:'VERIFIED'|'SUSPENDED'|'PENDING')=>{try{await api.verifyOrganization(id,next);await load()}catch(e){setError(e instanceof Error?e.message:'Unable to update verification')}}
+  if(loading)return <Loading label="Loading partner registry…"/>
+  return <><PageHeader eyebrow="PLATFORM OPERATIONS" title="Partner verification" description="Admin reviewers control whether organizations can participate in Reloop. Marketplace and logistics requests are restricted to verified partners."/><div className="toolbar"><label className="filter-select"><span>Status</span><select value={status} onChange={e=>setStatus(e.target.value)}><option value="">All</option><option value="PENDING">Pending</option><option value="VERIFIED">Verified</option><option value="SUSPENDED">Suspended</option></select></label><Button variant="secondary" icon="refresh" onClick={load}>Refresh</Button></div>{error&&<ErrorNotice message={error}/>}<Card>{rows.length===0?<EmptyState icon="users" title="No organizations found" message="Partner registrations will appear here."/>:<div className="org-list">{rows.map(org=><div className="org-item" key={org.id}><div className="org-icon"><Icon name={org.organization_type==='Logistics'?'truck':org.organization_type==='Recycler'?'layers':'users'} size={22}/></div><div className="org-main"><strong>{org.name}</strong><span>{org.organization_type} · {org.city}, {org.state}</span><small>{org.certifications||'No certifications listed'}</small></div><Badge tone={statusTone(org.verification_status)}>{org.verification_status}</Badge><div className="table-actions">{org.verification_status!=='VERIFIED'&&<Button variant="success" onClick={()=>verify(org.id,'VERIFIED')} icon="check">Verify</Button>}{org.verification_status==='VERIFIED'&&<Button variant="danger" onClick={()=>verify(org.id,'SUSPENDED')} icon="x">Suspend</Button>}</div></div>)}</div>}</Card></>
+}
