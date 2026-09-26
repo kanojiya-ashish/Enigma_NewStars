@@ -5,8 +5,62 @@ Reloop is an AI-powered circular resource exchange prototype built around one ac
 **DECIDE → MATCH → ROUTE → TRANSPORT → RECEIVE → PROVE → VERIFY → MEASURE**
 
 The project is intentionally structured like a real product: role-based workspaces, backend authorization, lifecycle state transitions, notifications, driver assignment, GPS tracking, receipt verification, outcome evidence, reviewer verification and verified-only impact.
+## 👥 Team Details — NewStars
 
-## Roles
+| Member Name | Role | GitHub Profile | Responsibilities |
+| **Rohan Dawane** | Team Leader / AI-ML Lead | [@rohan14062008](https://github.com/rohan14062008) | AI/ML Models & Dynamic Routing Algorithms |
+| **Leena Basen** | Frontend Engineer | [@leenabasen](https://github.com/leenabasen) | UI/UX Design, TypeScript & HTML Dashboard |
+| **Aryan Salunke** | Backend Engineer | [@Aryan-3007](https://github.com/Aryan-3007) | Python FastAPI Backend, AlchemySQL & PostgreSQL Schemas |
+| **Aashish Kanojiya** | Deployment & DevOps Lead | [@kanojiya-ashish](https://github.com/kanojiya-ashish) | Architecture, Cloud Deployment, CI/CD Pipeline & Repo Mgmt |
+
+## 🎯 Problem Statement
+
+Most circular economy efforts collapse at the first bin:
+* **Source Contamination:** Recyclables, organics, and hazardous waste get mixed at the source, destroying material value downstream.
+* **Static Logistics:** Bins overflow or sit half-empty while collection vehicles follow rigid, unoptimized schedules.
+* **Hyper-Local Friction:** Reusable surplus (construction offcuts, working electronics, organic biomass) is landfilled because no local micro-exchange network exists.
+* **Zero Visibility:** Residents receive no visibility into post-bin outcomes, killing incentives to sort properly.
+
+---
+## 🛠️ Tech Stack
+
+* **Frontend:** TypeScript, HTML, CSS, Tailwind CSS
+* **Backend API:** Python (FastAPI)
+* **Database & ORM:** PostgreSQL, SQLAlchemy (AlchemySQL)
+* **Machine Learning / AI:** PyTorch / TensorFlow Lite (Material Classification & Routing)
+* **Deployment & Infrastructure:** Docker, Cloud Deployment Platforms
+* **IoT Telemetry (Simulated):** MQTT Protocol, ESP32 Fill-Level Data Pipeline
+
+---
+
+## ⚙️ Setup & Installation Instructions
+
+### Prerequisites
+* Python 3.10+
+* Node.js (v18.0.0+)
+* PostgreSQL 14+ database instance
+
+### 1. Clone the Repository
+``bash
+git clone [https://github.com/kanojiya-ashish/Enigma_NewStars.git](https://github.com/kanojiya-ashish/Enigma_NewStars.git)
+cd Enigma_NewStars 
+cd backend
+python -m venv venv
+# On Windows: venv\Scripts\activate | On macOS/Linux: source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn main:app --reload
+cd backend
+python -m venv venv
+# On Windows: venv\Scripts\activate | On macOS/Linux: source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn main:app --reload
+
+## 🚀 The Reloop Architecture
+
+Reloop transforms urban material management using a **Three-Layer Solution Pipeline**:
+
 
 Visible business workspaces:
 
