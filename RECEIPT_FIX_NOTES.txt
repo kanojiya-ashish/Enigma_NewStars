@@ -1,0 +1,6 @@
+V8.4.2 — Outcome submission reliability fix
+- Removed silent browser-native form blocking by using explicit client-side validation.
+- Evidence uploads now show progress and the submit button is gated until uploads finish.
+- Added clear validation for received quantity, narrative and pathway-specific evidence.
+- Added explicit submission success state and pending-verification state.
+- Added a real evidence-upload regression test.
